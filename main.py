@@ -83,7 +83,10 @@ while running:
 
             if event.key in (pygame.K_PLUS, pygame.K_KP_PLUS):
                 createCube(cubeList, cam, colours, rotSpeeds)
+                cubeNum += 1
             if event.key in (pygame.K_MINUS, pygame.K_KP_MINUS):
+                if len(cubeList) != 0:
+                    cubeNum -= 1
                 cubeList = cubeList[:-1]
                 colours = colours[:-1]
                 rotSpeeds = rotSpeeds[:-1]
@@ -116,8 +119,11 @@ while running:
     fps_text = font.render("FPS: " + str(round(clock.get_fps(), 1)), 1, (255, 255, 255))
     screen.blit(fps_text, (10, 5))
 
+    counter_text = font.render("Number of cubes: " + str(cubeNum), 1, (255, 255, 255))
+    screen.blit(counter_text, (10, 25))
+
     t = font.render("Use the '+' and '-' keys to add or delete cubes", 1, (255, 255, 255))
-    screen.blit(t, (10, 25))
+    screen.blit(t, (10, 45))
 
     pygame.display.flip()
     clock.tick(TICK_RATE)
